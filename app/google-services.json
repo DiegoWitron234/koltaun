@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "925913275025",
+    "project_id": "koltaun-79dbf",
+    "storage_bucket": "koltaun-79dbf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:925913275025:android:ac51cf6a3aa05203167d30",
+        "android_client_info": {
+          "package_name": "aplicacion.principal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "925913275025-ubs5rr4nft72dcbn1qq2dppsshocn79h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCUScaoCnZ3sThmPHOQtwI_Q9_4Ez35cc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "925913275025-ubs5rr4nft72dcbn1qq2dppsshocn79h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_vocabulario">
+    <fragment
+        android:id="@+id/navigation_vocabulario"
+        android:name="aplicacion.principal.Vocabulario"
+        android:label="Vocabulario"
+        tools:layout="@layout/fragment_vocabulario" />
+    <fragment
+        android:id="@+id/navigation_cuentos"
+        android:name="aplicacion.principal.Cuentos"
+        android:label="Cuentos"
+        tools:layout="@layout/fragment_cuentos" />
+    <fragment
+        android:id="@+id/navigation_aprender"
+        android:name="aplicacion.principal.Aprender"
+        android:label="Aprender"
+        tools:layout="@layout/fragment_aprender" />
+    <!--
+    <fragment
+        android:id="@+id/navigarion_practicar"
+        android:name="aplicacion.principal.Practicar"
+        android:label="Practicar"
+        tools:layout="@layout/fragment_practicar" />
+    <fragment
+        android:id="@+id/navigation_informacion"
+        android:name="aplicacion.principal.Informacion"
+        android:label="Información"
+        tools:layout="@layout/fragment_informacion" />
+        -->
+</navigation>

@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name">Koltaun</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title_vocabulario">Vocabulario</string>
+    <string name="title_cuentos">Cuentos</string>
+    <string name="tltle_aprender">Aprender</string>
+    <string name="title_practicar">Practicar</string>
+    <string name="title_informacion">Información</string>
+
+    <string name="descripcion_colores">Colores en español y tzotzil</string>
+    <string name="descripcion_alimentos">Frutas y verduras en español y tzotzil.</string>
+    <string name="descripcion_animales">Especies de animales en español y tzotzil.</string>
+    <string name="descripcion_cuertpo">Partes del cuerpo en español y tzotzil.</string>
+    <string name="descripcion_parentezco">Familiares en español y tzotzil.</string>
+    <string name="descripcion_tiempo">Tiempo en español y tzotzil.</string>
+    <string name="descripcion_numeros">Números en español y tzotzil.</string>
+    <string name="descripcion_verbos">Verbos en español y tzotzil.</string>
+    <string name="descripcion_saludos">Saludos y frases en español y tzotzil.</string>
+
+    <string-array name="lista_palabras">
+        <item>hola|hun</item>
+        <item>casa|bak\'</item>
+        <item>perro|pooch\'</item>
+        <item>gato|sak</item>
+        <item>amarillo|shulub</item>
+        <item>manzana|yaxcol</item>
+        <item>montaña|ch\'ulel</item>
+        <item>sol|k\'inal</item>
+        <item>luna|p\'uuy</item>
+        <item>estrella|tz\'iibil</item>
+        <item>fuego|k\'áax</item>
+        <item>agua|ya\'</item>
+        <item>aire|sotz\'il</item>
+        <item>tierra|lum</item>
+        <item>árbol|che\'</item>
+        <item>flor|xanlol</item>
+        <item>río|yaxub</item>
+        <item>mar|k\'áak\'</item>
+        <item>viento|uts</item>
+        <item>nube|k\'op\'o\'</item>
+        <item>rayo|tz\'iibi\'</item>
+        <item>trueno|k\'\'aay</item>
+        <item>nieve|uts\'ibal</item>
+        <item>lluvia|k\'aay</item>
+        <item>frio|yáax</item>
+        <item>calor|ch\'iik</item>
+        <item>alegre|k\'amul</item>
+        <item>triste|ch\'ulub</item>
+        <item>enojado|tz\'ikin</item>
+        <item>miedo|ts\'ikin</item>
+        <item>amor|sasil</item>
+        <item>odio|t\'uxul</item>
+        <item>comer|tsik</item>
+        <item>beber|tso\'</item>
+        <item>dormir|velel</item>
+        <item>caminar|ju\'um</item>
+        <item>correr|ts\'o\'k</item>
+        <item>saltar|ts\'íb</item>
+        <item>reír|kuxan</item>
+        <item>llorar|ya\'ok</item>
+        <item>hablar|kolik</item>
+        <item>escuchar|yok\'ol</item>
+        <item>ver|wach</item>
+        <item>sentir|t\'enel</item>
+        <item>pensar|ts\'íibil</item>
+        <item>soñar|ch\'íich\'</item>
+        <item>aprender|tzelel</item>
+        <item>conocer|buxi\'</item>
+        <item>querer|vinik</item>
+        <item>crear|ko\'olel</item>
+        <item>buscar|y\'iit</item>
+        <item>encontrar|bajk</item>
+        <item>dar|kuxtal</item>
+        <item>recibir|kuxtalil</item>
+        <item>trabajar|u\'uk</item>
+        <item>descansar|yichk\'in</item>
+        <item>ganar|ts\'iikbal</item>
+        <item>perder|ts\'áam</item>
+        <item>abrir|chikin</item>
+        <item>cerrar|ts\'ikbal</item>
+        <item>entrar|yich\'</item>
+        <item>salir|tsikbal</item>
+        <!-- Agregar más palabras-->
+    </string-array>
+</resources>
