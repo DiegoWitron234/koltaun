@@ -23,6 +23,17 @@
     <string name="descripcion_verbos">Verbos en español y tzotzil.</string>
     <string name="descripcion_saludos">Saludos y frases en español y tzotzil.</string>
 
+    <string name="nombrescreadores">Moltalvo Pérez Miriam Lucía\nPérez Barrios Kevin Daniel\nRodríguez Rodríguez Raúl Alejandro\nWitrón López Diego Alonso</string>
+    <string name="lblColaboradores">Colaboradores</string>
+    <string name="lblCreadores">Creadores</string>
+    <string name="lblTourGame">Tour Game</string>
+    <string name="lblAvisoPrivacidad">Aviso de privacidad</string>
+    <string name="lblDerechosReservados">Koltaun\n©2023 Tour Game. Todos los derechos reservados</string>
+    <string name="correoMirai">miraimx742414@gmail.com</string>
+    <string name="version">Versión 1.0.0</string>
+    <string name="titleAcercaDe">Acerca De</string>
+    <string name="nombrescolaboradores">MiraiMX\nEtc</string>
+
     <string-array name="lista_palabras">
         <item>hola|hun</item>
         <item>casa|bak\'</item>
