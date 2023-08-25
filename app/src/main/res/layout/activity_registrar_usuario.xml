@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrar nuevo usuario"
+        android:text="@string/lblRegistrarNuevoUsuario"
         android:gravity="center"
         android:layout_gravity="center"
         android:layout_marginBottom="30dp"
@@ -23,8 +23,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Correo electrónico:"
-        android:textSize="25dp"
+        android:text="@string/lblCorreo"
+        android:textSize="25sp"
         android:layout_marginBottom="15dp"
         />
 
@@ -40,7 +40,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nueva contraseña:"
+        android:text="@string/lblNuevaContra"
         android:textSize="25sp"
         android:layout_marginBottom="15dp"
         />
@@ -49,7 +49,7 @@
         android:id="@+id/campoNuevaContraseña"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:inputType="textPassword"
         android:layout_marginBottom="30dp"
         />
@@ -57,8 +57,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Confirma tu contraseña:"
-        android:textSize="25dp"
+        android:text="@string/lblConfirmaContra"
+        android:textSize="25sp"
         android:layout_marginBottom="15dp"
         />
 
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:inputType="textPassword"
-        android:textSize="20dp"
+        android:textSize="20sp"
         />
 
     <TextView
@@ -76,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/rojo"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:layout_gravity="center"
         android:layout_marginBottom="15dp"
         />
@@ -86,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/rojo"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:layout_gravity="center"
         android:layout_marginBottom="15dp"
         />
@@ -95,8 +95,8 @@
         android:id="@+id/btnRegistrarse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrarse"
-        android:textSize="20dp"
+        android:text="@string/lblRegistrarse"
+        android:textSize="20sp"
         android:background="@drawable/redondeado_completo"
         android:layout_gravity="center"/>
 
