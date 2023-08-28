@@ -55,6 +55,7 @@
     <string name="hintCorreo">Correo</string>
     <string name="lblIniciarSesion">Iniciar sesión</string>
     <string name="lblRegistrate">¿No tienes cuenta? Regístrate</string>
+    <string name="confirmacionTerminos">Confirmo que he leído y estoy de acuerdo con los términos y condiciones y la política de privacidad</string>
 
     <string-array name="lista_palabras">
         <item>hola|hun</item>

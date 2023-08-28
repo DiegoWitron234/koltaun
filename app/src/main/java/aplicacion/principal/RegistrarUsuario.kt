@@ -2,13 +2,19 @@ package aplicacion.principal
 
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
+import android.text.SpannableString
 import android.text.TextWatcher
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.util.Log
 import android.util.Patterns
+import android.view.View
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -27,6 +33,7 @@ class RegistrarUsuario : AppCompatActivity() {
     private lateinit var btnRegistrarse: Button
     private lateinit var txtCorreoValido: TextView
     private lateinit var txtContraseñaValida: TextView
+    private lateinit var checkboxAceptar: CheckBox
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,11 +62,50 @@ class RegistrarUsuario : AppCompatActivity() {
         campoNuevaContraseña.addTextChangedListener(watcher)
         campoConfirmarContraseña.addTextChangedListener(watcher)
 
+        checkboxAceptar = findViewById(R.id.checkboxAceptar)
+
+        val termsAndPrivacyTextView = findViewById<TextView>(R.id.termsAndPrivacyTextView)
+
+        val message = "Confirma que has leído y aceptas los términos y condiciones y el aviso de privacidad."
+
+        val spannableString = SpannableString(message)
+
+        // Definir los clics en los enlaces
+        val termsClickableSpan = object : ClickableSpan() {
+            override fun onClick(view: View) {
+                openWebPage("https://drive.google.com/file/d/1bRcUV6G8qncZ0i-nLLMNvfMKFbNok2UB/view?usp=sharinghttps://drive.google.com/file/d/1bRcUV6G8qncZ0i-nLLMNvfMKFbNok2UB/view?usp=sharing")
+            }
+        }
+
+        val privacyClickableSpan = object : ClickableSpan() {
+            override fun onClick(view: View) {
+                openWebPage("https://drive.google.com/file/d/188t2xfCTc9XaVemcxVrBvnrCuvA5QEcn/view?usp=drive_link")
+            }
+        }
+
+        // Aplicar los estilos y enlaces a las partes del texto
+        spannableString.setSpan(termsClickableSpan, 37, 59, 0)
+        spannableString.setSpan(privacyClickableSpan, 65, 84, 0)
+
+        termsAndPrivacyTextView.text = spannableString
+        termsAndPrivacyTextView.movementMethod = LinkMovementMethod.getInstance()
+
         btnRegistrarse.setOnClickListener {
             val correo = campoNuevoCorreo.text.toString()
             val contraseña = campoNuevaContraseña.text.toString()
-            crearCuenta(correo, contraseña)
+            if (checkboxAceptar.isChecked){
+                crearCuenta(correo, contraseña)
+                //Toast.makeText(this, "Usuario registrado", Toast.LENGTH_SHORT).show()
+            } else{
+                Toast.makeText(this, "Debe aceptar los términos y condiciones", Toast.LENGTH_SHORT)
+                    .show()
+            }
         }
+    }
+
+    private fun openWebPage(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(intent)
     }
 
     private val watcher = object : TextWatcher {

@@ -35,6 +35,7 @@
         android:inputType="textEmailAddress"
         android:textSize="20sp"
         android:layout_marginBottom="30dp"
+        android:hint="Correo Electrónico"
         />
 
     <TextView
@@ -52,6 +53,7 @@
         android:textSize="20sp"
         android:inputType="textPassword"
         android:layout_marginBottom="30dp"
+        android:hint="Contraseña"
         />
 
     <TextView
@@ -69,6 +71,7 @@
         android:layout_marginBottom="10dp"
         android:inputType="textPassword"
         android:textSize="20sp"
+        android:hint="Contraseña"
         />
 
     <TextView
@@ -90,6 +93,24 @@
         android:layout_gravity="center"
         android:layout_marginBottom="15dp"
         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        >
+        <CheckBox
+            android:id="@+id/checkboxAceptar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:id="@+id/termsAndPrivacyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnRegistrarse"
