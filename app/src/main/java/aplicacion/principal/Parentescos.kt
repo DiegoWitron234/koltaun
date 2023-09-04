@@ -47,6 +47,7 @@ class Parentescos : AppCompatActivity() {
         recyclerView.addItemDecoration(decoracion)
     }
 
+    @SuppressLint("DiscouragedApi")
     private fun reproducirTono(recurso: CargaRecursos) {
         val nombreRecursos = recurso.etiquetaRecurso
         val idRecurso = resources.getIdentifier(nombreRecursos, "raw", packageName)
