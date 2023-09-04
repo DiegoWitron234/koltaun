@@ -31,116 +31,13 @@
             android:textStyle="bold"
             android:textColor="@color/black"
             />
-        <ImageButton
-            android:id="@+id/imgButton1"
-            android:layout_gravity="center"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAnimales"
             android:layout_margin="20dp"
-            android:layout_width="250dp"
-            android:background="@drawable/redondeado_completo"
-            android:layout_height="250dp"
-            android:padding="10dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/abeja"
-            android:contentDescription="Botón de abeja"/>
-        <ImageButton
-            android:id="@+id/imgButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:background="@drawable/redondeado_completo"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:padding="10dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/acaro"
-            android:contentDescription="Botón de ácaro"/>
-        <ImageButton
-            android:id="@+id/imgButton3"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:layout_width="250dp"
-            android:background="@drawable/redondeado_completo"
-            android:layout_height="250dp"
-            android:padding="10dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/alacran"
-            android:contentDescription="Botón de alacrán"/>
-        <ImageButton
-            android:id="@+id/imgButton4"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:layout_width="250dp"
-            android:background="@drawable/redondeado_completo"
-            android:layout_height="250dp"
-            android:padding="10dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/arana"
-            android:contentDescription="Botón de araña"/>
-        <ImageButton
-            android:id="@+id/imgButton5"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:layout_width="250dp"
-            android:background="@drawable/redondeado_completo"
-            android:layout_height="250dp"
-            android:padding="10dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/ardilla"
-            android:contentDescription="Botón de ardilla"/>
-        <ImageButton
-            android:id="@+id/imgButton6"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:layout_width="250dp"
-            android:background="@drawable/redondeado_completo"
-            android:layout_height="250dp"
-            android:padding="10dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/armadillo"
-            android:contentDescription="Botón de armadillo"/>
-        <ImageButton
-            android:id="@+id/imgButton7"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:layout_width="250dp"
-            android:background="@drawable/redondeado_completo"
-            android:layout_height="250dp"
-            android:padding="10dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/caballo"
-            android:contentDescription="Botón de caballo"/>
-        <ImageButton
-            android:id="@+id/imgButton8"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:layout_width="250dp"
-            android:background="@drawable/redondeado_completo"
-            android:layout_height="250dp"
-            android:padding="10dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/mariposa"
-            android:contentDescription="Botón de mariposa"/>
-        <ImageButton
-            android:id="@+id/imgButton9"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:layout_width="250dp"
-            android:background="@drawable/redondeado_completo"
-            android:layout_height="250dp"
-            android:padding="10dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/mosca"
-            android:contentDescription="Botón de mosca"/>
-        <ImageButton
-            android:id="@+id/imgButton10"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:layout_width="250dp"
-            android:background="@drawable/redondeado_completo"
-            android:layout_height="250dp"
-            android:padding="10dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/perro"
-            android:contentDescription="Botón de perro"/>
+            />
     </LinearLayout>
 
 </ScrollView>

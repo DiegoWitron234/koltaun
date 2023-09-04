@@ -1,26 +1,22 @@
 package aplicacion.principal
 
+import android.annotation.SuppressLint
+import android.content.res.Resources
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageButton
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 
 class Numeros : AppCompatActivity() {
-    private lateinit var uno: MediaPlayer
-    private lateinit var dos: MediaPlayer
-    private lateinit var tres: MediaPlayer
-    private lateinit var cuatro: MediaPlayer
-    private lateinit var cinco: MediaPlayer
-    private lateinit var seis: MediaPlayer
-    private lateinit var siete: MediaPlayer
-    private lateinit var ocho: MediaPlayer
-    private lateinit var nueve: MediaPlayer
-    private lateinit var diez: MediaPlayer
 
+    private val sonidos = mutableListOf<MediaPlayer>()
     private lateinit var mAdView: AdView
+    private var tono: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,72 +28,43 @@ class Numeros : AppCompatActivity() {
         val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
 
-        uno = MediaPlayer.create(this, R.raw.uno)
-        dos = MediaPlayer.create(this, R.raw.dos)
-        tres = MediaPlayer.create(this, R.raw.tres)
-        cuatro = MediaPlayer.create(this, R.raw.cuatro)
-        cinco = MediaPlayer.create(this, R.raw.cinco)
-        seis = MediaPlayer.create(this, R.raw.seis)
-        siete = MediaPlayer.create(this, R.raw.siete)
-        ocho = MediaPlayer.create(this, R.raw.ocho)
-        nueve = MediaPlayer.create(this, R.raw.nueve)
-        diez = MediaPlayer.create(this, R.raw.diez)
-
-        val imageButton1: ImageButton = findViewById(R.id.imgButton1)
-        val imageButton2: ImageButton = findViewById(R.id.imgButton2)
-        val imageButton3: ImageButton = findViewById(R.id.imgButton3)
-        val imageButton4: ImageButton = findViewById(R.id.imgButton4)
-        val imageButton5: ImageButton = findViewById(R.id.imgButton5)
-        val imageButton6: ImageButton = findViewById(R.id.imgButton6)
-        val imageButton7: ImageButton = findViewById(R.id.imgButton7)
-        val imageButton8: ImageButton = findViewById(R.id.imgButton8)
-        val imageButton9: ImageButton = findViewById(R.id.imgButton9)
-        val imageButton10: ImageButton = findViewById(R.id.imgButton10)
-
-        imageButton1.setOnClickListener {
-            reproducirTono(uno)
-        }
-        imageButton2.setOnClickListener {
-            reproducirTono(dos)
-        }
-        imageButton3.setOnClickListener {
-            reproducirTono(tres)
-        }
-        imageButton4.setOnClickListener {
-            reproducirTono(cuatro)
-        }
-        imageButton5.setOnClickListener {
-            reproducirTono(cinco)
-        }
-        imageButton6.setOnClickListener {
-            reproducirTono(seis)
-        }
-        imageButton7.setOnClickListener {
-            reproducirTono(siete)
-        }
-        imageButton8.setOnClickListener {
-            reproducirTono(ocho)
-        }
-        imageButton9.setOnClickListener {
-            reproducirTono(nueve)
-        }
-        imageButton10.setOnClickListener {
-            reproducirTono(diez)
-        }
+        initRecyclerView()
     }
 
-    private fun reproducirTono(tono: MediaPlayer) {
-        // Verifica si el audio ya está reproduciendo y, si es así, detén la reproducción y reinicia
-        if (tono.isPlaying) {
-            tono.seekTo(0)
-        } else {
-            tono.start()
+    private fun initRecyclerView() {
+        val manager = LinearLayoutManager(this)
+        val decoracion = DividerItemDecoration(this, manager.orientation)
+        val recyclerView = findViewById<RecyclerView>(R.id.rvNumeros)
+        val coloresLista = mutableListOf<CargaRecursos>()
+        val etiquetaRecurso = resources.getStringArray(R.array.numeroLista).toList()
+
+        for (etiqueta in etiquetaRecurso) {
+            coloresLista.add(CargaRecursos(etiqueta))
         }
+
+        recyclerView.layoutManager = manager
+        recyclerView.adapter = RecursosAdapter(coloresLista) { reproducirTono(it) }
+        recyclerView.addItemDecoration(decoracion)
     }
 
-    override fun onPause() {
-        mAdView.pause()
-        super.onPause()
+    @SuppressLint("DiscouragedApi")
+    private fun reproducirTono(recurso: CargaRecursos) {
+        val nombreRecursos = recurso.etiquetaRecurso
+        val idRecurso = resources.getIdentifier(nombreRecursos, "raw", packageName)
+        try {
+            if (tono != null) {
+                if (tono!!.isPlaying) {
+                    tono!!.seekTo(0)
+                } else {
+                    tono!!.start()
+                }
+            } else {
+                // Crear una nueva instancia si tono es nulo
+                tono = MediaPlayer.create(this, idRecurso)
+                sonidos.add(tono!!)
+                tono!!.start()
+            }
+        } catch (_: Resources.NotFoundException) {}
     }
 
     override fun onResume() {
@@ -105,21 +72,16 @@ class Numeros : AppCompatActivity() {
         mAdView.resume()
     }
 
+    override fun onPause() {
+        super.onPause()
+        mAdView.pause()
+    }
 
     override fun onDestroy() {
         super.onDestroy()
-
         mAdView.destroy()
-        // Libera los recursos de MediaPlayer cuando el fragmento se destruya para evitar pérdidas de memoria
-        uno.release()
-        dos.release()
-        tres.release()
-        cuatro.release()
-        cinco.release()
-        seis.release()
-        siete.release()
-        ocho.release()
-        nueve.release()
-        diez.release()
+        for (tono in sonidos) {
+            tono.release()
+        }
     }
 }

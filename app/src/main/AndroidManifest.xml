@@ -21,18 +21,6 @@
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Verbos"
-            android:exported="false"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".Tiempo"
-            android:exported="false"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".Saludos"
-            android:exported="false"
-            android:screenOrientation="portrait"/>
-        <activity
             android:name=".Parentescos"
             android:exported="false"
             android:screenOrientation="portrait"/>

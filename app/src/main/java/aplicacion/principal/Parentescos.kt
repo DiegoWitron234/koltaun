@@ -1,20 +1,22 @@
 package aplicacion.principal
 
+import android.annotation.SuppressLint
+import android.content.res.Resources
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageButton
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 
 class Parentescos : AppCompatActivity() {
-    private lateinit var abuela: MediaPlayer
-    private lateinit var abuelo: MediaPlayer
-    private lateinit var madre: MediaPlayer
-    private lateinit var padre: MediaPlayer
-    private lateinit var ahijado: MediaPlayer
+
+    private val sonidos = mutableListOf<MediaPlayer>()
     private lateinit var mAdView: AdView
+    private var tono: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,47 +28,42 @@ class Parentescos : AppCompatActivity() {
         val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
 
-        abuela = MediaPlayer.create(this, R.raw.abuela)
-        abuelo = MediaPlayer.create(this, R.raw.abuelo)
-        madre = MediaPlayer.create(this, R.raw.madre)
-        padre = MediaPlayer.create(this, R.raw.padre)
-        ahijado = MediaPlayer.create(this, R.raw.ahijado)
-
-        val imageButton1: ImageButton = findViewById(R.id.imgButton1)
-        val imageButton2: ImageButton = findViewById(R.id.imgButton2)
-        val imageButton3: ImageButton = findViewById(R.id.imgButton3)
-        val imageButton4: ImageButton = findViewById(R.id.imgButton4)
-        val imageButton5: ImageButton = findViewById(R.id.imgButton5)
-
-        imageButton1.setOnClickListener {
-            reproducirTono(abuela)
-        }
-        imageButton2.setOnClickListener {
-            reproducirTono(abuelo)
-        }
-        imageButton3.setOnClickListener {
-            reproducirTono(madre)
-        }
-        imageButton4.setOnClickListener {
-            reproducirTono(padre)
-        }
-        imageButton5.setOnClickListener {
-            reproducirTono(ahijado)
-        }
+        initRecyclerView()
     }
 
-    private fun reproducirTono(tono: MediaPlayer) {
-        // Verifica si el audio ya está reproduciendo y, si es así, detén la reproducción y reinicia
-        if (tono.isPlaying) {
-            tono.seekTo(0)
-        } else {
-            tono.start()
+    private fun initRecyclerView() {
+        val manager = LinearLayoutManager(this)
+        val decoracion = DividerItemDecoration(this, manager.orientation)
+        val recyclerView = findViewById<RecyclerView>(R.id.rvFamilia)
+        val coloresLista = mutableListOf<CargaRecursos>()
+        val etiquetaRecurso = resources.getStringArray(R.array.familiaLista).toList()
+
+        for (etiqueta in etiquetaRecurso) {
+            coloresLista.add(CargaRecursos(etiqueta))
         }
+
+        recyclerView.layoutManager = manager
+        recyclerView.adapter = RecursosAdapter(coloresLista) { reproducirTono(it) }
+        recyclerView.addItemDecoration(decoracion)
     }
 
-    override fun onPause() {
-        mAdView.pause()
-        super.onPause()
+    private fun reproducirTono(recurso: CargaRecursos) {
+        val nombreRecursos = recurso.etiquetaRecurso
+        val idRecurso = resources.getIdentifier(nombreRecursos, "raw", packageName)
+        try {
+            if (tono != null) {
+                if (tono!!.isPlaying) {
+                    tono!!.seekTo(0)
+                } else {
+                    tono!!.start()
+                }
+            } else {
+                // Crear una nueva instancia si tono es nulo
+                tono = MediaPlayer.create(this, idRecurso)
+                sonidos.add(tono!!)
+                tono!!.start()
+            }
+        } catch (_: Resources.NotFoundException) {}
     }
 
     override fun onResume() {
@@ -74,16 +71,16 @@ class Parentescos : AppCompatActivity() {
         mAdView.resume()
     }
 
+    override fun onPause() {
+        super.onPause()
+        mAdView.pause()
+    }
 
     override fun onDestroy() {
         super.onDestroy()
-
         mAdView.destroy()
-        // Libera los recursos de MediaPlayer cuando el fragmento se destruya para evitar pérdidas de memoria
-        abuela.release()
-        abuelo.release()
-        madre.release()
-        padre.release()
-        ahijado.release()
+        for (tono in sonidos) {
+            tono.release()
+        }
     }
 }

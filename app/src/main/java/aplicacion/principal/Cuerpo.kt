@@ -1,24 +1,22 @@
 package aplicacion.principal
 
+import android.annotation.SuppressLint
+import android.content.res.Resources
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageButton
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 
 class Cuerpo : AppCompatActivity() {
 
-    private lateinit var abdomen: MediaPlayer
-    private lateinit var boca: MediaPlayer
-    private lateinit var brazo: MediaPlayer
-    private lateinit var cuello: MediaPlayer
-    private lateinit var garganta: MediaPlayer
-    private lateinit var mano: MediaPlayer
-
+    private val sonidos = mutableListOf<MediaPlayer>()
     private lateinit var mAdView: AdView
-
+    private var tono: MediaPlayer? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cuerpo)
@@ -29,43 +27,43 @@ class Cuerpo : AppCompatActivity() {
         val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
 
-        abdomen = MediaPlayer.create(this, R.raw.abdomen)
-        boca = MediaPlayer.create(this, R.raw.boca)
-        brazo = MediaPlayer.create(this, R.raw.brazo)
-        cuello = MediaPlayer.create(this, R.raw.cuello)
-        garganta = MediaPlayer.create(this, R.raw.garganta)
-        mano = MediaPlayer.create(this, R.raw.mano)
-
-        val imageButton1: ImageButton = findViewById(R.id.imgButton1)
-        val imageButton2: ImageButton = findViewById(R.id.imgButton2)
-        val imageButton3: ImageButton = findViewById(R.id.imgButton3)
-        val imageButton4: ImageButton = findViewById(R.id.imgButton4)
-        val imageButton5: ImageButton = findViewById(R.id.imgButton5)
-        val imageButton6: ImageButton = findViewById(R.id.imgButton6)
-
-        imageButton1.setOnClickListener {
-            reproducirTono(abdomen)
-        }
-        imageButton2.setOnClickListener {
-            reproducirTono(boca)
-        }
-        imageButton3.setOnClickListener {
-            reproducirTono(brazo)
-        }
-        imageButton4.setOnClickListener {
-            reproducirTono(cuello)
-        }
-        imageButton5.setOnClickListener {
-            reproducirTono(garganta)
-        }
-        imageButton6.setOnClickListener {
-            reproducirTono(mano)
-        }
+        initRecyclerView()
     }
 
-    override fun onPause() {
-        mAdView.pause()
-        super.onPause()
+    private fun initRecyclerView() {
+        val manager = LinearLayoutManager(this)
+        val decoracion = DividerItemDecoration(this, manager.orientation)
+        val recyclerView = findViewById<RecyclerView>(R.id.rvCuerpo)
+        val coloresLista = mutableListOf<CargaRecursos>()
+        val stringColor = resources.getStringArray(R.array.cuerpoLista).toList()
+
+        for (color in stringColor) {
+            coloresLista.add(CargaRecursos(color))
+        }
+
+        recyclerView.layoutManager = manager
+        recyclerView.adapter = RecursosAdapter(coloresLista) { reproducirTono(it) }
+        recyclerView.addItemDecoration(decoracion)
+    }
+
+    @SuppressLint("DiscouragedApi")
+    private fun reproducirTono(recurso: CargaRecursos) {
+        val nombreRecursos = recurso.etiquetaRecurso
+        val idRecurso = resources.getIdentifier(nombreRecursos, "raw", packageName)
+        try {
+            if (tono != null) {
+                if (tono!!.isPlaying) {
+                    tono!!.seekTo(0)
+                } else {
+                    tono!!.start()
+                }
+            } else {
+                // Crear una nueva instancia si tono es nulo
+                tono = MediaPlayer.create(this, idRecurso)
+                sonidos.add(tono!!)
+                tono!!.start()
+            }
+        } catch (_: Resources.NotFoundException) {}
     }
 
     override fun onResume() {
@@ -73,26 +71,16 @@ class Cuerpo : AppCompatActivity() {
         mAdView.resume()
     }
 
-
-    private fun reproducirTono(tono: MediaPlayer) {
-        // Verifica si el audio ya está reproduciendo y, si es así, detiene la reproducción y la reinicia
-        if (tono.isPlaying) {
-            tono.seekTo(0)
-        } else {
-            tono.start()
-        }
+    override fun onPause() {
+        super.onPause()
+        mAdView.pause()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-
         mAdView.destroy()
-        // Libera los recursos de MediaPlayer cuando el fragmento se destruya para evitar pérdidas de memoria
-        abdomen.release()
-        boca.release()
-        brazo.release()
-        cuello.release()
-        garganta.release()
-        mano.release()
+        for (tono in sonidos) {
+            tono.release()
+        }
     }
 }

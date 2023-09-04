@@ -17,7 +17,6 @@
         android:scaleType="centerInside"
         android:padding="10dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/brazo"
         android:layout_marginBottom="50dp"
         />
     <Button
