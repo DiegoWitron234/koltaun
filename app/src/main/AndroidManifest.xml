@@ -17,15 +17,7 @@
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Configuracion"
-            android:exported="false"
-            android:screenOrientation="portrait"/>
-        <activity
             android:name=".AcercaDe"
-            android:exported="false"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".RegistrarUsuario"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
@@ -66,13 +58,9 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".MainActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_main" />
-        <activity
-            android:name=".Login"
             android:exported="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

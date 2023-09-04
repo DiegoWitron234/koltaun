@@ -17,8 +17,6 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 
 class MainActivity : AppCompatActivity() {
@@ -125,30 +123,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.configuracion -> {
-                // Acción para la opción 1
-                val intent = Intent(this, Configuracion::class.java)
-                startActivity(intent)
-                return true
-            }
             R.id.acercaDe -> {
                 // Acción para la opción 2
                 val intent = Intent(this, AcercaDe::class.java)
                 startActivity(intent)
-                return true
-            }
-            R.id.cerrarSesion -> {
-                // Acción para la opción 3
-                // Mostrar el cuadro de diálogo de confirmación
-                AlertDialog.Builder(this)
-                    .setMessage("¿Seguro que quieres cerrar la sesión?")
-                    .setPositiveButton("Salir") { dialog, which -> // Acción de confirmación
-                        Firebase.auth.signOut()
-                        Toast.makeText(this, "Sesión cerrada", Toast.LENGTH_SHORT).show()
-                        finish()
-                    }
-                    .setNegativeButton("Cancelar", null)
-                    .show()
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
